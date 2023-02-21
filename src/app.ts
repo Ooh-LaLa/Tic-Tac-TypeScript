@@ -13,17 +13,17 @@ const squareEls = document.querySelectorAll('.sqr')
 const messageEl = document.querySelector('#message')
 console.log(messageEl);
 
-const boardEl = document.querySelector('.board')
+const boardEl: HTMLElement = document.querySelector('.board')!
 console.log(boardEl);
 
-const resetBtnEl = document.querySelector('.resetBtn')
+const resetBtnEl: HTMLButtonElement = document.querySelector('.resetBtn')!
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 resetBtnEl?.addEventListener("click", init)
 console.log(resetBtnEl);
 
-boardEl?.addEventListener("click", handleClick)
+boardEl.addEventListener("click", handleClick)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -63,19 +63,17 @@ function updateBoard() {
 
 function updateMessage() {
   if (winner === false && tie === false)  {
-    messageEl.innerHTML = "Player turn"
+    messageEl!.innerHTML! = "Player turn"
 } else if (winner === false && tie === true) {
-    messageEl.innerHTML = "It's a tie"
+    messageEl!.innerHTML = "It's a tie"
 } else {
-    messageEl.innerHTML = "Congrats!"
+    messageEl!.innerHTML = "Congrats!"
 }
 } 
 
 
-function handleClick(evt: MouseEvent & {
-    target: HTMLButtonElement
-  }): void {
-//    if(!evt.target || !('id' in evt.target)) return
+function handleClick(evt: Event  ): void {
+  if(!(evt.target instanceof HTMLElement)) return
     
     const sqIdx = Number(evt.target?.id.slice(2))
     
