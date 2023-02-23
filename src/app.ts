@@ -1,7 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 const choices = ["X", "O"];
 
-let winningCombos: number[];
+const winningCombos: number[][] = [
 
 (winningCombos = [0, 1, 2]),
   [3, 4, 5],
@@ -10,12 +10,13 @@ let winningCombos: number[];
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [6, 4, 2];
+  [6, 4, 2]
+]
 /*---------------------------- Variables (state) ----------------------------*/
 let turn: number, winner: boolean, tie: boolean, board: number[];
 
 /*------------------------ Cached Element References ------------------------*/
-const squareEls = document.querySelectorAll(".sqr");
+const squareEls = document.querySelectorAll<HTMLDivElement>(".sqr");
 
 const messageEl = document.querySelector("#message");
 console.log(messageEl);
@@ -42,7 +43,7 @@ function init() {
   render();
 }
 
-function render() {
+function render(): void {
   updateBoard();
   updateMessage();
 }
